@@ -1,0 +1,75 @@
+.hero-container {background: url(`/image/Eventlokaler.jpg`) center center/cover no-repeat;
+    
+    background-color: rgba(0,0,0,0.2);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
+    object-fit: contain;
+}
+.cbuttons{
+    position: center;
+    margin-left: 650px;
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: rgb(224, 247, 16);
+}
+
+.hero-container > h1 {
+    color: white;
+    font-size: 100px;
+    margin-top: -100px;
+}
+
+.hero-container > p {
+    margin-top: 8px;
+    color: white;
+    font-size: 32px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.hero-btns {
+    margin-top: 32px;
+}
+
+.hero-btns .btn {
+    margin: 6px;
+}
+
+.fa-play-circle {
+    margin-left: 4px;
+}
+
+@media screen and (max-width: 960px) {
+    .hero-container > h1 {
+        color: white;
+        font-size: 100px;
+        margin-top: -100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-container > h1 {
+        font-size: 50px;
+        margin-top: -100px;
+    }
+
+    .hero-container > p {
+        font-size: 30px;
+    }
+
+    .btn-mobile {
+        display: block;
+        text-decoration: none;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
