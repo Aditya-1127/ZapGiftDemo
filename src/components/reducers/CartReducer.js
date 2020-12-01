@@ -1,4 +1,4 @@
-import Item1 from '../../images/corona.jpg'
+import Item1 from '../../images/absolut.png'
 import Item2 from '../../images/corona.jpg'
 import Item3 from '../../images/corona.jpg'
 import Item4 from '../../images/corona.jpg'
@@ -9,12 +9,12 @@ import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '
 
 const initState = {
     items: [
-        {id:1,title:'Corona', desc: "Beer", price:110,img:Item1},
-        {id:2,title:'Corona', desc: "Beer", price:80,img: Item2},
-        {id:3,title:'Corona', desc: "Beer",price:120,img: Item3},
-        {id:4,title:'Corona', desc: "Beer", price:260,img:Item4},
-        {id:5,title:'Corona', desc: "Beer", price:160,img: Item5},
-        {id:6,title:'Corona', desc: "Beer",price:90,img: Item6}
+        {id:1,title:'Corona', desc: "Beer", price:200,img:Item1},
+        {id:2,title:'Corona', desc: "Beer", price:1000,img: Item2},
+        {id:3,title:'Corona', desc: "Beer",price:6200,img: Item3},
+        {id:4,title:'Corona', desc: "Beer", price:100,img:Item4},
+        {id:5,title:'Corona', desc: "Beer", price:4500,img: Item5},
+        {id:6,title:'Corona', desc: "Beer",price:9000,img: Item6}
     ],
     addedItems:[],
     total: 0
