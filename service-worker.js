@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ZapGiftDemo/precache-manifest.8c3e5d1dba93608fc95e93286d55ad4e.js"
+  "/ZapGiftDemo/precache-manifest.885e2bfd6dad6807b89e033b14f782a6.js"
 );
 
 self.addEventListener('message', (event) => {
