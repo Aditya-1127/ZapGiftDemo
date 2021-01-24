@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { addToCart } from '../actions/cartactions'
+import { addToFastGift } from '../actions/cartactions'
+import { open_details } from '../actions/cartactions'
 import { fetchProducts } from "../actions/productActions";
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Image } from 'semantic-ui-react'
 import Example from "../DropDown";   
 import RSlider from "../RangeSlider";   
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,9 +12,30 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import ProgressBar from "../ProgressBar";   
 import Facebook from "../FetchFacebook";   
-import UploadFile from "../UploadFile";   
 import FileUpload from "../FileUpload";  
+import ZapWallet from "../Zapwallet";  
+import DropzoneFile from "../DropzoneFile";   
+import GMaps from "../Maps";   
+import  './Products.css'
+import  '../Cards.css'
+import unplashimage from '../../images/unplash.png';
+import GoogleMap from '../GoogleMap';
+import Auto from '../Autocomplete';
+import { Link } from 'react-router-dom'
+// import ultramax from '../../images/ultramaxFile/ultramaxcan2_XR.48.html'
+import fratelliobj from '../../images/02.obj'
+import fratellimtl from '../../images/02.mtl'
+import {JSONModel} from 'react-3d-viewer';
+import {OBJModel} from 'react-3d-viewer';
+import {Tick,MTLModel} from 'react-3d-viewer';
+import threeD from "../Threed";  
+import {GLTFModel,AmbientLight,DirectionLight} from 'react-3d-viewer';
 
+
+
+// const htmlDoc = {__html: ultramax};
+
+// const classes = useStyles();
 const ocassions = [
     {
       key: 'Low to High',
@@ -29,10 +52,21 @@ const ocassions = [
   ]
 class Products extends Component{
 
-    
+
     handleClick = (id)=>{
         this.props.addToCart(id); 
     }
+    handleOpenClick = (id)=>{
+      this.props.open_details(id); 
+      console.log("Bottle Details Page 1")
+  }
+    handleClickFastGift = (id)=>{
+      if(this.props.flag!=1){
+      this.props.addToFastGift(id); 
+      } else {
+        alert("No More bottles can be added")
+      }
+  }
      handleChange = (event, newValue) => {
        this.setState({value:newValue})
       }
@@ -48,6 +82,31 @@ class Products extends Component{
      }
   
     render(){
+      const mystyle = {
+        width: "540px",
+        height: "360px"
+      };
+
+      const mystyle2 = {
+        left: "0px",
+         width: "100%",
+          height: "0px",
+           position: "relative",
+            padding: "56.25%",
+             overflow: "hidden"
+      };
+      const mystyle3 = {
+        position: "absolute",
+        top: "0px",
+        left: "0px",
+        height: "100%",
+        width: "1px", 
+        width: "100%",
+       
+      };
+
+
+             let links="http://192.168.64.2/{{item.link}}"
             let itemList=null;
        
                 if(this.state.value2==1){
@@ -55,12 +114,19 @@ class Products extends Component{
                   if(item.price>=this.state.value[0]&&item.price<=this.state.value[1]){
                      
                     return(
-                        <div className="card" key={item.id}>
-                           
-                                <div className="card-image">
+                        <div className="cards" key={item.id}>
+                          <div className="cards__container">
+                                <div className="cards__wrapper">
+                                  
                                     <img src={item.img} alt={item.title}/>
+                                    
+                                    <br></br>
                                     <span className="card-title">{item.title}</span>
-                                    <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" ><i onClick={()=>{this.handleClick(item.id)}} class="fa fa-plus" aria-hidden="true">add</i></span>
+                                    <br></br>
+                                    <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" ><i onClick={()=>{this.handleClick(item.id)}} class="material-icons" aria-hidden="true">C</i></span>
+                                    <Link to="/bottle" className="waves-effect waves-light btn" ><i onClick={()=>{this.handleOpenClick(item.id)}} class="material-icons" aria-hidden="true">Open Page</i></Link>
+                                    <span to="/" className="btn-floating yellow darken-1" ><i onClick={()=>{this.handleClickFastGift(item.id)}} class="material-icons" aria-hidden="true">F</i></span>
+                                </div>
                                 </div>
         
                                 <div className="card-content">
@@ -77,12 +143,19 @@ class Products extends Component{
                     if(item.price>=this.state.value[0]&&item.price<=this.state.value[1]){
                        
                       return(
-                          <div className="card" key={item.id}>
-                             
-                                  <div className="card-image">
-                                      <img src={item.img} alt={item.title}/>
+                          <div className="cards" key={item.id}>
+                              <div className="cards__container">
+                                  <div className="cards__wrapper">
+                                 
+                                    <img src={item.img} alt={item.title}/>
+                                   
+                                      <br></br>
                                       <span className="card-title">{item.title}</span>
-                                      <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" ><i onClick={()=>{this.handleClick(item.id)}} class="fa fa-plus" aria-hidden="true">add</i></span>
+                                      <br></br>
+                                      <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" ><i onClick={()=>{this.handleClick(item.id)}} class="material-icons" aria-hidden="true">C</i></span>
+                                      <Link to="/bottle" className="waves-effect waves-light btn" ><i onClick={()=>{this.handleOpenClick(item.id)}} class="material-icons" aria-hidden="true">Open Page</i></Link>
+                                      <span to="/" className="btn-floating yellow darken-1" ><i onClick={()=>{this.handleClickFastGift(item.id)}} class="material-icons" aria-hidden="true">F</i></span>
+                                  </div>
                                   </div>
           
                                   <div className="card-content">
@@ -100,12 +173,28 @@ class Products extends Component{
                     if(item.price>=this.state.value[0]&&item.price<=this.state.value[1]){
                        
                       return(
-                          <div className="card" key={item.id}>
-                             
-                                  <div className="card-image">
-                                      <img src={item.img} alt={item.title}/>
+                          <div className="cards" key={item.id}>
+                              <div className="cards__container">
+                                  <div className="cards__wrapper">
+                                  
+                                  <div style={mystyle}>
+  <div style={mystyle2}>
+    <iframe src="https://zapgift.web.app"
+                 allowfullscreen
+                 frameborder="0"
+                 style={mystyle3}
+                 scrolling="no">
+    </iframe>
+    </div>
+    </div>
+                                  
+                                      <br></br>
                                       <span className="card-title">{item.title}</span>
-                                      <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" ><i onClick={()=>{this.handleClick(item.id)}} class="fa fa-plus" aria-hidden="true">add</i></span>
+                                      <br></br>
+                                      <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" ><i onClick={()=>{this.handleClick(item.id)}} class="material-icons" aria-hidden="true">C</i></span>
+                                      <Link to="/bottle" className="waves-effect waves-light btn" ><i  onClick={()=>{this.handleOpenClick(item.id)}} class="material-icons" aria-hidden="true">Open Page</i></Link>
+                                      <span to="/" className="btn-floating yellow darken-1" ><i onClick={()=>{this.handleClickFastGift(item.id)}} class="material-icons" aria-hidden="true">F</i></span>
+                                  </div>
                                   </div>
           
                                   <div className="card-content">
@@ -124,7 +213,7 @@ class Products extends Component{
         
 
         return(
-            <div className="container">
+            <div>
                 <h3 className="">Our items</h3>
                 <h4 className="">Filter</h4>
               
@@ -134,40 +223,126 @@ class Products extends Component{
     options={ocassions}
     onChange={this.handleDropdown}
   />
-                <RSlider/>
-                <Slider
-                    value={this.state.value}
-                
-                    min={0}
-                    step={200}
-                    max={10000}
-                    onChange={this.handleChange}
-                    valueLabelDisplay="auto"
-                    aria-labelledby="range-slider"
-                 
-      />
-      <ProgressBar value={75}/>
+            
+      {/* <ProgressBar value={75}/>
+      <Maps/>
       <Facebook/>
-     
-      <FileUpload/>
+      <DropzoneFile/> */}
+
+      {/* <FileUpload/> */}
+     {/* <ZapWallet/> */}
+     {/* <Auto/> */}
+     {/* <GMaps/> */}
+     {/* <GoogleMap/> */}
+ 
 
                 <div className="box">
                     {itemList}
+                 
                 </div>
+                <div>
+      {/* <OBJModel 
+        width="400" height="400"  
+        position={{x:0,y:-100,z:0}} 
+        src="../../images/fratelli.obj"
+        onLoad={()=>{
+          //...
+        }}
+        onProgress={xhr=>{
+          //...
+        }}
+      /> */}
+
+    <div className="box">
+     {/* <MTLModel 
+      width = {900}
+      height = {900}
+      enableZoom = {true}
+      position={{x:0,y:-100,z:0}}
+      rotation={this.state.rotation}
+      mtl={fratellimtl}
+      src={fratelliobj}
+      texPath="./src/lib/model/"
+      /> */}
+    
+    </div>
+
+
+
+
+    <div>
+      {/* <GLTFModel src={fratelligltf}>
+        <AmbientLight color={0xffffff}/>
+        <DirectionLight color={0xffffff} position={{x:100,y:200,z:100}}/>
+        <DirectionLight color={0xff00ff} position={{x:-100,y:200,z:-100}}/>
+     </GLTFModel> */}
+    </div>
+
+
+    
+    {/* <threeD/> */}
+    <div >
+  <div >
+  {/* <div style={mystyle}>
+  <div style={mystyle2}>
+    <iframe src="http://192.168.64.2"
+                 allowfullscreen
+                 frameborder="0"
+                 style={mystyle3}
+                 scrolling="no">
+    </iframe>
+    </div>
+    </div> */}
+  </div>
+</div>
+  
+    </div>
+                <div >
+
+  
+
+ 
+</div>
+              
+               
+      {/* <div className = "first">
+                <div className="boxlinear">
+                  <img className="image" src ={require('../../images/unplash.png')}/>     
+                </div>
+      </div> */}
+{/* 
+      <div className = "first2"> 
+               <div className="design">
+                <div className="boxinside">
+                  <div className="boxlinear2">
+                
+                  </div>
+                </div>
+                </div>
+      </div> */}
+     
+
+
             </div>
         )
+        
     }
+  
+    
 }
 const mapStateToProps = (state)=>{
     return {
-      items: state.items,
+      items: state.cart.items,
+      flag:state.fast.flag
       
     }
   }
 const mapDispatchToProps= (dispatch)=>{
     
     return{
-        addToCart: (id)=>{dispatch(addToCart(id))}
+        addToCart: (id)=>{dispatch(addToCart(id))},
+        addToFastGift: (id)=>{dispatch(addToFastGift(id))},
+        open_details:(id)=>{dispatch(open_details(id))}
     }
 }
 

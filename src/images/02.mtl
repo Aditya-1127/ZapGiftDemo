@@ -1,0 +1,31 @@
+# OBJ Material Export by Luxion KeyShot
+
+newmtl Plastic Polycarbonate
+Kd 1 1 1
+
+newmtl Back Logo
+Kd 0.5 0.5 0.5
+
+newmtl Bruichladdich Bottel mtl #1
+Kd 0.134146 0.0156504 0
+
+newmtl Liquid Chardonnay Bruichiladdi #1
+Kd 0.292683 0.0649985 0.00202199
+
+newmtl Glass (Solid) Grey #1
+Kd 0.923106 0.923106 0.923106
+
+newmtl Bruichladdich head
+Kd 0.0369243 0.0199308 0.00961169
+
+newmtl Top Cap Line
+Kd 0.5 0.5 0.5
+
+newmtl Aluminum Brushed bruichiladdi #3
+Kd 0.792157 0.819608 0.933333
+
+newmtl Global #1
+Kd 0.346021 0.346021 0.346021
+
+newmtl 700 ml
+Kd 0.5 0.5 0.5

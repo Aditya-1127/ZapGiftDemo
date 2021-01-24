@@ -18,6 +18,28 @@ class Cart extends Component{
         this.props.subtractQuantity(id);
     }
     render(){
+        const mystyle = {
+            width: "640px",
+            height: "360px"
+          };
+    
+          const mystyle2 = {
+            left: "0px",
+             width: "100%",
+              height: "0px",
+               position: "relative",
+                padding: "56.25%",
+                 overflow: "hidden"
+          };
+          const mystyle3 = {
+            position: "absolute",
+            top: "0px",
+            left: "0px",
+            height: "100%",
+            width: "1px", 
+            width: "100%",
+           
+          };
               
         let addedItems = this.props.items.length ?
             (  
@@ -26,7 +48,16 @@ class Cart extends Component{
                        
                         <li className="collection-item avatar" key={item.id}>
                                     <div className="item-img"> 
-                                        <img src={item.img} alt={item.img} className=""/>
+                                    <div style={mystyle}>
+  <div style={mystyle2}>
+    <iframe src="http://192.168.64.2"
+                 allowfullscreen
+                 frameborder="0"
+                 style={mystyle3}
+                 scrolling="no">
+    </iframe>
+    </div>
+    </div>
                                     </div>
                                 
                                     <div className="item-desc">
@@ -69,7 +100,7 @@ class Cart extends Component{
 
 const mapStateToProps = (state)=>{
     return{
-        items: state.addedItems,
+        items: state.cart.addedItems,
         //addedItems: state.addedItems
     }
 }

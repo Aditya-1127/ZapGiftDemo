@@ -59,7 +59,7 @@ function Navbar() {
                     </Link>
                 </li>
                 <li className='nav-item'>
-                    <Link  className='nav-links' >
+                    <Link  to='/services' className='nav-links' onClick={closeMobileMenu} >
                         Services
                        
                     </Link>
@@ -84,6 +84,9 @@ function Navbar() {
            
                 <Link to='/cart'className='navbar-links' >
                 <i class="fas fa-shopping-cart"></i>
+                </Link>
+                <Link to='/fastgift'className='navbar-links' >
+                <i class="fas fa-fighter-jet"></i>
                 </Link>
                 {isOpen && <Popup
       content={<>

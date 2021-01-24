@@ -10,6 +10,8 @@ import Profile from './components/pages/Profile';
 import Login from './components/pages/Login';
 import Cart from './components/Cart'
 import Navbar from './components/Navbar';
+import FastGift from './components/FastGift';
+import BottleDetails from './components/BottleDetails';
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path ='/services' component = {Services} />
         <Route path ='/products' component = {Products} />
         <Route path="/cart" component={Cart}/>
+        <Route path="/fastgift" component={FastGift}/>
+        <Route path="/bottle" component={BottleDetails}/>
         <div className="App">
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
